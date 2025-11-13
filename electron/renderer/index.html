@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EventTapper - Global Hotkey Monitor</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>🎯 EventTapper</h1>
+      <p class="subtitle">Global Hotkey & Event Monitoring for macOS</p>
+    </header>
+
+    <section class="permissions-section">
+      <h2>Permissions</h2>
+      <div class="permission-status">
+        <div id="permission-indicator" class="indicator pending"></div>
+        <span id="permission-text">Checking permissions...</span>
+      </div>
+      <button id="request-permissions-btn" class="btn btn-primary" style="display: none;">
+        Request Accessibility Access
+      </button>
+    </section>
+
+    <section class="hotkey-section">
+      <h2>Register Hotkey</h2>
+      <div class="hotkey-form">
+        <div class="input-group">
+          <label for="hotkey-input">Hotkey Combination:</label>
+          <input
+            type="text"
+            id="hotkey-input"
+            placeholder="e.g., Command+Shift+K"
+            readonly
+          >
+          <p class="hint">Click and press your desired hotkey combination</p>
+        </div>
+
+        <div class="checkbox-group">
+          <h3>Modifiers:</h3>
+          <label>
+            <input type="checkbox" id="mod-command" value="command">
+            Command (⌘)
+          </label>
+          <label>
+            <input type="checkbox" id="mod-shift" value="shift">
+            Shift (⇧)
+          </label>
+          <label>
+            <input type="checkbox" id="mod-option" value="option">
+            Option (⌥)
+          </label>
+          <label>
+            <input type="checkbox" id="mod-control" value="control">
+            Control (⌃)
+          </label>
+        </div>
+
+        <button id="register-hotkey-btn" class="btn btn-success">
+          Register Hotkey
+        </button>
+      </div>
+
+      <div class="registered-hotkeys">
+        <h3>Registered Hotkeys:</h3>
+        <ul id="hotkey-list"></ul>
+      </div>
+    </section>
+
+    <section class="monitoring-section">
+      <h2>Event Monitoring</h2>
+      <div class="monitoring-controls">
+        <button id="start-monitoring-btn" class="btn btn-primary">
+          Start Monitoring
+        </button>
+        <button id="stop-monitoring-btn" class="btn btn-secondary" disabled>
+          Stop Monitoring
+        </button>
+      </div>
+
+      <div class="event-log">
+        <h3>Event Log:</h3>
+        <div id="event-log-container"></div>
+        <button id="clear-log-btn" class="btn btn-small">Clear Log</button>
+      </div>
+    </section>
+
+    <section class="stats-section">
+      <h2>Statistics</h2>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-value" id="stat-hotkeys">0</div>
+          <div class="stat-label">Hotkeys Triggered</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" id="stat-keys">0</div>
+          <div class="stat-label">Keys Pressed</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-value" id="stat-monitoring">Inactive</div>
+          <div class="stat-label">Monitoring Status</div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script src="renderer.js"></script>
+</body>
+</html>

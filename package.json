@@ -1,0 +1,53 @@
+{
+  "name": "electron-eventtapper",
+  "version": "0.1.0",
+  "description": "Electron wrapper for EventTapper - Global hotkey and event monitoring for macOS",
+  "main": "electron/main.js",
+  "scripts": {
+    "start": "electron .",
+    "build:swift": "cd native/EventTapperBridge && swift build -c release",
+    "build": "npm run build:swift",
+    "dev": "electron . --enable-logging",
+    "package": "electron-builder"
+  },
+  "keywords": [
+    "electron",
+    "eventtapper",
+    "hotkey",
+    "macos",
+    "keyboard",
+    "event-monitoring",
+    "global-hotkey"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {
+    "electron": "^27.0.0",
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "electron-builder": "^24.0.0"
+  },
+  "build": {
+    "appId": "com.yourcompany.eventtapper",
+    "mac": {
+      "category": "public.app-category.utilities",
+      "target": [
+        "dmg",
+        "zip"
+      ],
+      "extendInfo": {
+        "NSAppleEventsUsageDescription": "This app needs to monitor keyboard and mouse events for hotkey functionality.",
+        "NSAccessibilityUsageDescription": "This app needs accessibility access to monitor global keyboard and mouse events."
+      }
+    },
+    "files": [
+      "electron/**/*",
+      "src/**/*",
+      "native/EventTapperBridge/.build/release/EventTapperBridge"
+    ]
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}
